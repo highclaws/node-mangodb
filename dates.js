@@ -5,22 +5,38 @@ const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+try {
 
-client.connect(err => {
+    client.connect(err => {
+        // async
+        (async()=> {
 
-    var dbo = client.db("test");
-    dbo.createCollection("dates", function(err, res) {
-        if (err) throw err;
-        console.log("Collection created!");
-        client.close();
+            var dbo = client.db("test");
+
+            dbo.createCollection("dates", function(err, res) {
+                if (err) throw err;
+                console.log("Collection created!");
+                client.close();
+            });
+
+
+            dbo.collection("dates").insertOne({ date: (new Date()).toString() }, function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+                client.close();
+            });
+
+
+            dbo.collection("dates").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                client.close();
+            });
+
+        })()
+
     });
 
-    var query = { _id: "10059244" };
-    const collection = client.db("sample_airbnb").collection("listingsAndReviews").find(query).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        client.close();
-    });
-    // perform actions on the collection object
-});
-
+} catch (err) {
+    console.log(err.stack);
+}
