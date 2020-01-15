@@ -168,6 +168,6 @@ myRouter.route('/reservation/:reservation_id')
 });
 
 app.use(myRouter);   
-app.listen(port, hostname, function(){
+app.listen(process.env.PORT || port, function(){
 	console.log("Mon serveur fonctionne sur http://"+ hostname +":"+port); 
 });
