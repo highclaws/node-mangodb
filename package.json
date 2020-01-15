@@ -1,11 +1,15 @@
 {
-  "name": "nodemango",
+  "name": "api-myevents",
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
     "mangodb": "^1.0.0",
-    "mongodb": "^3.3.2"
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.8.4"
+  },
+  "engines": {
+    "node": "10.x"
   },
   "devDependencies": {},
   "scripts": {

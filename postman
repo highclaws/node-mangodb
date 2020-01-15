@@ -1,0 +1,39 @@
+{
+	"title": "event 1",
+	"description": "description croute",
+	"freeText": "description longue",
+	"image": "image",
+    "email": "gmail.com",
+    "CreatorUid": "123",
+	"locations": [
+            {
+                "latitude": "48.865162",
+                "longitude": "2.368009",
+                "address": "rue de malte",
+                "region": "Île-de-France",
+                "city": "Paris",
+                "postalCode": "75011",
+                "dates": [
+                    {
+                        "date": "2019-12-26",
+                        "timeStart": "09:30:00",
+                        "timeEnd": "10:00:00"
+                    }
+                ]
+            }
+        ]
+}
+{
+	"title": "event 1",
+	"description": "description croute",
+	"freeText": "description longue",
+	"image": "image",
+    "email": "gmail.com",
+    "CreatorUid": "123",
+	"locations": [
+            	{
+            		"latitude": "48.865162",
+            		"longitude": "2.368009" 
+            	}
+               ]
+}
