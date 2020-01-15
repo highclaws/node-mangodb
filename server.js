@@ -22,7 +22,8 @@ var eventSchema = mongoose.Schema({
     image: String,
     email: String,
     CreatorUid: String,
-    locations: [{_id:false, latitude: String , longitude: String,  address: String,  region: String,  city: String,  postalCode: String,  dates:[{_id:false, date : String, timeStart : String, timeEnd : String }] }   ]
+    dates: [{_id:false, date : String, timeStart : String, timeEnd : String }],
+    locations: [{_id:false, latitude: String , longitude: String,  address: String,  region: String,  city: String,  postalCode: String }   ]
 }); //  locations:  [ {latitude: String , longitude: String }  ]
 
 var Event = mongoose.model('Event', eventSchema); 
@@ -50,6 +51,7 @@ myRouter.route('/events')
       event.email = req.body.email; 
       event.CreatorUid = req.body.CreatorUid; 
       event.locations = req.body.locations; 
+      event.dates = req.body.dates; 
       console.log(req.body.locations);
       event.save(function(err){
         if(err){
@@ -78,7 +80,8 @@ myRouter.route('/events/:event_id')
         event.image = req.body.image; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
-        event.locations = req.body.locations; 
+        event.locations = req.body.locations;
+        event.dates = req.body.dates; 
         event.save(function(err){
             if(err){
                 res.send(err);
