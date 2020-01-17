@@ -1,8 +1,8 @@
 var express = require('express');
+var util = require('util') ;
 var hostname = 'localhost'; 
 var port = 3000; 
 var mongoose = require('mongoose'); 
-const Double = require('@mongoosejs/double');
 
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
@@ -29,7 +29,7 @@ var eventSchema = mongoose.Schema({
     city: String,  
     postalCode: String,
     dates: {_id:false, date : String, timeStart : String, timeEnd : String },
-    location: {_id:false, latitude: Double , longitude: Double}   
+    location: {_id:false, latitude:  { type: Number, set: function (v) { return Math.round(v) ;}} , longitude:  { type: Number, set: function (v) { return Math.round(v) ;}}}   
 
 }); //  locations:  [ {latitude: String , longitude: String }  ]
 
