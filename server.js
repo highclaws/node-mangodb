@@ -91,7 +91,7 @@ myRouter.route('/events/:event_id')
         event.image = req.body.image; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
-        event.locations = req.body.locations;
+        event.location = req.body.location;
         event.dates = req.body.dates; 
         event.address = req.body.address; 
         event.region = req.body.region; 
