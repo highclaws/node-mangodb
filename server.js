@@ -27,7 +27,7 @@ var eventSchema = mongoose.Schema({
     city: String,  
     postalCode: String,
     dates: {_id:false, date : String, timeStart : String, timeEnd : String },
-    location: {_id:false, latitude: String , longitude: String}   
+    location: {_id:false, latitude: { type: SchemaTypes.Double } , longitude: { type: SchemaTypes.Double }}   
 
 }); //  locations:  [ {latitude: String , longitude: String }  ]
 
