@@ -27,7 +27,7 @@ var eventSchema = mongoose.Schema({
     city: String,  
     postalCode: String,
     dates: [{_id:false, date : String, timeStart : String, timeEnd : String }],
-    location: [{_id:false, latitude: String , longitude: String}   ]
+    locations: [{_id:false, latitude: String , longitude: String}   ]
 
 }); //  locations:  [ {latitude: String , longitude: String }  ]
 
@@ -55,7 +55,7 @@ myRouter.route('/events')
       event.image = req.body.image; 
       event.email = req.body.email; 
       event.CreatorUid = req.body.CreatorUid; 
-      event.location = req.body.location; 
+      event.locations = req.body.locations; 
       event.dates = req.body.dates; 
 
       event.address = req.body.address; 
@@ -91,7 +91,7 @@ myRouter.route('/events/:event_id')
         event.image = req.body.image; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
-        event.location = req.body.location;
+        event.locations = req.body.locations;
         event.dates = req.body.dates; 
         event.address = req.body.address; 
         event.region = req.body.region; 
