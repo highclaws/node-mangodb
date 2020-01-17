@@ -19,7 +19,7 @@ var eventSchema = mongoose.Schema({
     title: String, 
     description: String, 
     freeText: String, 
-    image: String,
+    pictureURL: String,
     email: String,
     CreatorUid: String,
     address: String,  
@@ -52,7 +52,7 @@ myRouter.route('/events')
       event.title = req.body.title;
       event.description = req.body.description;
       event.freeText = req.body.freeText;
-      event.image = req.body.image; 
+      event.pictureURL = req.body.pictureURL; 
       event.email = req.body.email; 
       event.CreatorUid = req.body.CreatorUid; 
       event.location = req.body.location; 
@@ -88,7 +88,7 @@ myRouter.route('/events/:event_id')
         event.title = req.body.title;
         event.description = req.body.description;
         event.freeText = req.body.freeText;
-        event.image = req.body.image; 
+        event.pictureURL = req.body.pictureURL; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
         event.location = req.body.location;
