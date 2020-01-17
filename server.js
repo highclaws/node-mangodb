@@ -1,9 +1,7 @@
 var express = require('express');
-var util = require('util') ;
 var hostname = 'localhost'; 
 var port = 3000; 
 var mongoose = require('mongoose'); 
-
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 var urlmongo = "mongodb://ul0msc5xygeklatzuba6:G8IH6ZO7FTdVusqpZekg@bft0fdz443tmcqz-mongodb.services.clever-cloud.com:27017/bft0fdz443tmcqz"; 
@@ -29,7 +27,7 @@ var eventSchema = mongoose.Schema({
     city: String,  
     postalCode: String,
     dates: {_id:false, date : String, timeStart : String, timeEnd : String },
-    location: {_id:false, latitude:  { type: Number, set: function (v) { return Math.round(v) ;}} , longitude:  { type: Number, set: function (v) { return Math.round(v) ;}}}   
+    location: {_id:false, latitude: String , longitude: String}   
 
 }); //  locations:  [ {latitude: String , longitude: String }  ]
 
