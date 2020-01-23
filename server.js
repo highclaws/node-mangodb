@@ -70,6 +70,14 @@ myRouter.route('/events')
         res.json({message : 'Bravo, ton evenement est maintenant stockée en base de données'});
       }); 
 }); 
+myRouter.route('/events/org/:org_id')
+.get(function(req,res){ 
+    Event.findById(req.params.CreatorUid, function(err, event) {
+            if (err)
+                res.send(err);
+            res.json(event);
+        });
+});
 
 myRouter.route('/events/:event_id')
 .get(function(req,res){ 
