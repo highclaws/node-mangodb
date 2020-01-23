@@ -22,7 +22,7 @@ var eventSchema = mongoose.Schema({
     pictureURL: String,
     email: String,
     CreatorUid: String,
-    lieu: String,  
+    place: String,  
     postalCode: String,
     date : String,
     category : String,
@@ -59,7 +59,7 @@ myRouter.route('/events')
       event.date = req.body.date; 
       event.horaire = req.body.horaire; 
       event.category = req.body.category; 
-      event.lieu = req.body.lieu; 
+      event.place = req.body.lieu; 
       console.log(req.body.locations);
       event.save(function(err){
         if(err){
@@ -91,8 +91,7 @@ myRouter.route('/events/:event_id')
         event.location = req.body.location;
         event.date = req.body.date; 
         event.horaire = req.body.horaire; 
-        event.lieu = req.body.lieu; 
-        event.postalCode = req.body.postalCode; 
+        event.place = req.body.place; 
         event.save(function(err){
             if(err){
                 res.send(err);
