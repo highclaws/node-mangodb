@@ -24,7 +24,7 @@ var eventSchema = mongoose.Schema({
     CreatorUid: String,
     place: String,  
     postalCode: String,
-    date : String,
+    date : Date,
     category : String,
     timeStart : String, 
     timeEnd : String,
