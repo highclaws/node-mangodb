@@ -59,7 +59,7 @@ myRouter.route('/events')
       event.date = req.body.date; 
       event.horaire = req.body.horaire; 
       event.category = req.body.category; 
-      event.place = req.body.lieu; 
+      event.place = req.body.place; 
       console.log(req.body.locations);
       event.save(function(err){
         if(err){
