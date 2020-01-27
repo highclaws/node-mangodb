@@ -29,7 +29,7 @@ var eventSchema = mongoose.Schema({
     timeStart : String, 
     timeEnd : String,
     location: {_id:false, latitude: Number , longitude: Number}   
-}); //  locations:  [ {latitude: String , longitude: String }  ]
+}); 
 
 var Event = mongoose.model('Event', eventSchema); 
 var myRouter = express.Router(); 
