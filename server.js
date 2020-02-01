@@ -26,6 +26,7 @@ var eventSchema = mongoose.Schema({
     date : Date,
     timeStart : String, 
     timeEnd : String,
+    place: String,  
     address: String,  
     location: {_id:false, latitude: Number , longitude: Number}   
 }); 
@@ -58,6 +59,7 @@ myRouter.route('/events')
       event.date = req.body.date; 
       event.timeStart = req.body.timeStart; 
       event.timeEnd = req.body.timeEnd; 
+      event.place = req.body.place; 
       event.address = req.body.address; 
       event.location = req.body.location;
 
@@ -101,6 +103,7 @@ myRouter.route('/events/:event_id')
         event.date = req.body.date; 
         event.timeStart = req.body.timeStart; 
         event.timeEnd = req.body.timeEnd; 
+        event.place = req.body.place; 
         event.address = req.body.address; 
         event.location = req.body.location;
         event.save(function(err){
