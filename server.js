@@ -22,12 +22,12 @@ var eventSchema = mongoose.Schema({
     pictureURL: String,
     email: String,
     CreatorUid: String,
-    place: String,  
-    postalCode: String,
-    date : Date,
     category : String,
+    date : Date,
     timeStart : String, 
     timeEnd : String,
+    address: String,  
+    postalCode: String,
     location: {_id:false, latitude: Number , longitude: Number}   
 }); 
 
@@ -55,12 +55,14 @@ myRouter.route('/events')
       event.pictureURL = req.body.pictureURL; 
       event.email = req.body.email; 
       event.CreatorUid = req.body.CreatorUid; 
-      event.location = req.body.location;
+      event.category = req.body.category; 
       event.date = req.body.date; 
       event.timeStart = req.body.timeStart; 
       event.timeEnd = req.body.timeEnd; 
-      event.category = req.body.category; 
-      event.place = req.body.place; 
+      event.address = req.body.address; 
+      event.postalCode = req.body.postalCode; 
+      event.location = req.body.location;
+
       console.log(req.body.locations);
       event.save(function(err){
         if(err){
@@ -97,11 +99,13 @@ myRouter.route('/events/:event_id')
         event.pictureURL = req.body.pictureURL; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
-        event.location = req.body.location;
+        event.category = req.body.category; 
         event.date = req.body.date; 
         event.timeStart = req.body.timeStart; 
         event.timeEnd = req.body.timeEnd; 
-        event.place = req.body.place; 
+        event.address = req.body.address; 
+        event.postalCode = req.body.postalCode; 
+        event.location = req.body.location;
         event.save(function(err){
             if(err){
                 res.send(err);
@@ -144,8 +148,6 @@ myRouter.route('/reservations')
       reservation.eventUid = req.body.eventUid;
       reservation.userUid = req.body.userUid;
       reservation.statut = req.body.statut;
-
-    //  console.log(req.body.eventUid);
 
      reservation.save(function(err){
         if(err){
