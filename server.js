@@ -22,13 +22,14 @@ var eventSchema = mongoose.Schema({
     pictureURL: String,
     email: String,
     CreatorUid: String,
-    category : String,
+    place: String,  
+    location: {_id:false, latitude: Number , longitude: Number},
     date : Date,
+    category : String,
     timeStart : String, 
     timeEnd : String,
-    place: String,  
-    address: String,  
-    location: {_id:false, latitude: Number , longitude: Number}   
+    address: String
+ 
 }); 
 
 var Event = mongoose.model('Event', eventSchema); 
@@ -55,15 +56,14 @@ myRouter.route('/events')
       event.pictureURL = req.body.pictureURL; 
       event.email = req.body.email; 
       event.CreatorUid = req.body.CreatorUid; 
-      event.category = req.body.category; 
+      event.place = req.body.place;
+      event.location = req.body.location;
       event.date = req.body.date; 
+      event.category = req.body.category; 
       event.timeStart = req.body.timeStart; 
       event.timeEnd = req.body.timeEnd; 
-      event.place = req.body.place; 
       event.address = req.body.address; 
-      event.location = req.body.location;
 
-      console.log(req.body.locations);
       event.save(function(err){
         if(err){
           res.send(err);
@@ -99,13 +99,13 @@ myRouter.route('/events/:event_id')
         event.pictureURL = req.body.pictureURL; 
         event.email = req.body.email; 
         event.CreatorUid = req.body.CreatorUid; 
-        event.category = req.body.category; 
+        event.place = req.body.place;
+        event.location = req.body.location;
         event.date = req.body.date; 
+        event.category = req.body.category; 
         event.timeStart = req.body.timeStart; 
         event.timeEnd = req.body.timeEnd; 
-        event.place = req.body.place; 
         event.address = req.body.address; 
-        event.location = req.body.location;
         event.save(function(err){
             if(err){
                 res.send(err);
