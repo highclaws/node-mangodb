@@ -27,7 +27,6 @@ var eventSchema = mongoose.Schema({
     timeStart : String, 
     timeEnd : String,
     address: String,  
-    postalCode: String,
     location: {_id:false, latitude: Number , longitude: Number}   
 }); 
 
@@ -35,7 +34,7 @@ var Event = mongoose.model('Event', eventSchema);
 var myRouter = express.Router(); 
 myRouter.route('/')
 .all(function(req,res){ 
-      res.json({message : "Bienvenue sur notre API My Events ", methode : req.method});
+    res.json({message : "Bienvenue sur notre API My Events ", methode : req.method});
 });
 // evenements
 myRouter.route('/events')
@@ -60,7 +59,6 @@ myRouter.route('/events')
       event.timeStart = req.body.timeStart; 
       event.timeEnd = req.body.timeEnd; 
       event.address = req.body.address; 
-      event.postalCode = req.body.postalCode; 
       event.location = req.body.location;
 
       console.log(req.body.locations);
@@ -104,7 +102,6 @@ myRouter.route('/events/:event_id')
         event.timeStart = req.body.timeStart; 
         event.timeEnd = req.body.timeEnd; 
         event.address = req.body.address; 
-        event.postalCode = req.body.postalCode; 
         event.location = req.body.location;
         event.save(function(err){
             if(err){
