@@ -167,7 +167,6 @@ myRouter.route('/reservation/:reservation_id')
     {
         objarray[i] = mongoose.Types.ObjectId(peopleArray[i]);
     }
-
     Event.find({_id: {$in:  objarray }, function(err, events){
         if (err){
             res.send(err); 
