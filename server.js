@@ -159,14 +159,14 @@ myRouter.route('/reservations')
 
 myRouter.route('/reservation/:reservation_id')
 .get(function(req,res){ 
-    // var reservationUser = Reservation.find({"userUid": req.params.reservation_id });
+    //var reservationUser = Reservation.find({"userUid": req.params.reservation_id }).select('eventUid');
     // console.log(reservationUser);
     // Event.findById({qty: {$in: reservationUser.eventUid }}, function(err, reservation) {
     //         if (err)
     //             res.send(err);
     //         res.json(reservation);
     // });
-    Reservation.find({"userUid": req.params.reservation_id }, function(err, reservation) {
+    Reservation.find({"userUid": req.params.reservation_id }).select('eventUid'), function(err, reservation) {
                 if (err)
                     res.send(err);
                 res.json(reservation);
