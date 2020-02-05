@@ -172,7 +172,7 @@ myRouter.route('/reservation/:reservation_id')
                     res.send(err);
                 res.json(reservation);
     });
-    // Event.find({_id: {$in:  ["reservationUser", "reservationUser"] }}, function(err, events){
+    // Event.find({_id: {$in:  ["5e35d7053b2d1a0017762bb0", "5e3a0b9766a8ce0017f516c5", "5e3a0b9766a8ce0017f516c4"] }}, function(err, events){
     //     if (err){
     //         res.send(err); 
     //     }
