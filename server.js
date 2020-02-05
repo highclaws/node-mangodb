@@ -161,7 +161,7 @@ myRouter.route('/reservation/:reservation_id')
 .get(function(req,res){ 
     var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
     console.log(reservationUser);
-    Event.findById({qty: {$in: reservationUser.eventUid }}, function(err, reservation) {
+    Event.find({qty: {$in: reservationUser }}, function(err, reservation) {
             if (err)
                 res.send(err);
             res.json(reservation);
