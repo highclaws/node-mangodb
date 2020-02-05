@@ -172,12 +172,12 @@ myRouter.route('/reservation/:reservation_id')
                     res.send(err);
                 res.json(reservation);
     });
-    Event.find({_id: {$in:  reservationUser }}, function(err, events){
-        if (err){
-            res.send(err); 
-        }
-        res.json(events);  
-    }); 
+    // Event.find({_id: {$in:  ["reservationUser", "reservationUser"] }}, function(err, events){
+    //     if (err){
+    //         res.send(err); 
+    //     }
+    //     res.json(events);  
+    // }); 
 })
 .put(function(req,res){ 
     Reservation.findById(req.params.reservation_id, function(err, reservation) {
