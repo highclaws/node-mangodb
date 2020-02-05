@@ -166,7 +166,7 @@ myRouter.route('/reservation/:reservation_id')
     //             res.send(err);
     //         res.json(reservation);
     // });
-    Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0}, function(err, reservation) {
+    Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0}, function(err, reservation) {
                 if (err)
                     res.send(err);
                 res.json(reservation);
