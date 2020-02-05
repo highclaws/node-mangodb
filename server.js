@@ -159,7 +159,8 @@ myRouter.route('/reservations')
 
 myRouter.route('/reservation/:reservation_id')
 .get(function(req,res){ 
-    var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
+    //var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
+    //console.log(reservationUser);
     // Event.find({_id: {$in:  reservationUser }}, function(err, events){
     //     if (err){
     //         res.send(err); 
@@ -167,17 +168,22 @@ myRouter.route('/reservation/:reservation_id')
     //     res.json(events);  
     // }); 
     
-    // Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0}, function(err, reservation) {
-    //             if (err)
-    //                 res.send(err);
-    //             res.json(reservation);
-    // });
-    Event.find({_id: {$in:  ["5e35d7053b2d1a0017762bb0", "5e3a0b9766a8ce0017f516c5", "5e3a0b9766a8ce0017f516c4"] }}, function(err, events){
-        if (err){
-            res.send(err); 
+
+    Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0}, function(err, reservation) {
+        if (err) {
+            res.send(err);
+        } else {
+            let list = reservation.map( item => item.eventUid);
+            Event.find({_id: {$in:  list }}, function(err, events){
+                if (err){
+                    res.send(err); 
+                }
+                
+                res.json(events);  
+            }); 
         }
-        res.json(events);  
-    }); 
+    });
+
 })
 .put(function(req,res){ 
     Reservation.findById(req.params.reservation_id, function(err, reservation) {
