@@ -162,7 +162,7 @@ myRouter.route('/reservation/:reservation_id')
     var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
     console.log(reservationUser);
     var peopleArray = Object.values(reservationUser)
-    Event.find({_id: {$in: peopleArray } }, function(err, events){
+    Event.find({_id: {$in:  mongoose.Types.ObjectId(peopleArray)} }, function(err, events){
         if (err){
             res.send(err); 
         }
