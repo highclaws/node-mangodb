@@ -159,8 +159,8 @@ myRouter.route('/reservations')
 
 myRouter.route('/reservations/:reservation_id')
 .get(function(req,res){ 
-    //var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
-    //console.log(reservationUser);
+    // var reservationUser = Reservation.find({"userUid": req.params.reservation_id }, {"_id": 0, userUid: 0,statut: 0, __v: 0});
+    // console.log(reservationUser);
     // Event.find({_id: {$in:  reservationUser }}, function(err, events){
     //     if (err){
     //         res.send(err); 
@@ -201,6 +201,24 @@ myRouter.route('/reservations/:reservation_id')
     });
 })
 .delete(function(req,res){ 
+
+    Reservation.remove({_id: req.params.reservation_id}, function(err, reservation){
+        if (err){
+            res.send(err); 
+        }
+        res.json({message:"Bravo, event supprimée"}); 
+    }); 
+    
+});
+// get reserv and delete
+myRouter.route('/reservations/:eventUid/:userUid')
+.get(function(req,res){ 
+    Event.find({eventUid: req.params.eventUid , userUid:req.params.userUid}, function(err, event) {
+        if (err)
+            res.send(err);
+        res.json(event);
+    });
+}).delete(function(req,res){ 
 
     Reservation.remove({_id: req.params.reservation_id}, function(err, reservation){
         if (err){
