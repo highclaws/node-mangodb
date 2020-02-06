@@ -213,10 +213,10 @@ myRouter.route('/reservations/:reservation_id')
 // get reserv and delete
 myRouter.route('/reservations/:eventUid/:userUid')
 .get(function(req,res){ 
-    Event.find({eventUid: req.body.eventUid , userUid: req.body.userUid}, function(err, event) {
+    Reservation.find({eventUid: req.params.eventUid , userUid:req.params.userUid}, function(err, reservation) {
         if (err)
             res.send(err);
-        res.json(event);
+        res.json(reservation);
     });
 }).delete(function(req,res){ 
 
