@@ -222,7 +222,7 @@ myRouter.route('/reservations/:eventUid/:userUid')
         if (err){
             res.send(err); 
         }
-        res.json({message:"Bravo, event supprimée"}); 
+        res.json({message:"Bravo, reservation supprimée"}); 
     }); 
     
 });
