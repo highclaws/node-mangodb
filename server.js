@@ -218,7 +218,7 @@ myRouter.route('/reservations/:eventUid/:userUid')
     });
 }).delete(function(req,res){ 
 
-    Reservation.remove({_id: req.params.reservation_id}, function(err, reservation){
+    Reservation.remove({eventUid: req.params.eventUid, userUid: req.params.userUid}, function(err, reservation){
         if (err){
             res.send(err); 
         }
