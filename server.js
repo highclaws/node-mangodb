@@ -153,6 +153,7 @@ myRouter.route('/reservations')
     }); 
 })
 .post(function(req,res){
+
       
       var reservation = new Reservation();
       reservation.eventUid = req.body.eventUid;
@@ -163,30 +164,8 @@ myRouter.route('/reservations')
         if(err){
           res.send(err);
         }
-
+        
         res.json({message : 'Bravo, ton evenement est maintenant stockée en base de données'});
-
-        var dest = req.body.email
-        var msg = req.body.msg
-        console.log(dest)
-        console.log(msg)
-    
-        const data = {
-          to: "ouali.cherikh@gmail.com",
-          from: 'cylia.silouh@gmail.com',
-          subject: 'Hello ',
-          text: 'this is a test',
-          html: '<strong>' + msg + '</strong>',
-        };
-        sgMail.send(data)
-        .then(response => {
-        console.log('good !!!', response)
-        })
-        .catch(err => {
-        console.log('failed', err)
-        })
-
-
       }); 
 }); 
 
@@ -259,6 +238,37 @@ myRouter.route('/reservations/:eventUid/:userUid')
     }); 
     
 });
+
+
+myRouter.route('/send_email'.post(function(req,res){
+
+      console.log("test");
+  
+  
+      var dest = req.body.emailUser
+      var nameUser = req.body.nameUser
+      var TitreEvenement = req.body.TitreEvenement
+      var msg = req.body.msg
+      console.log(dest)
+      console.log(msg)
+  
+      const data = {
+        to: dest,
+        from: 'cylia.silouh@gmail.com',
+        subject: "Résérvation pour l'evenement "+TitreEvenement,
+        text: 'this is a test',
+        html: '<strong>' + msg + '</strong>',
+      };
+      sgMail.send(data)
+      .then(res => {
+      console.log('good !!!', res)
+      })
+      .catch(err => {
+      console.log('failed', err)
+      })
+  
+});
+
 
 app.use(myRouter);   
 app.listen(process.env.PORT || port, function(){
