@@ -239,12 +239,10 @@ myRouter.route('/reservations/:eventUid/:userUid')
     
 });
 
-
-myRouter.route('/send_email'.post(function(req,res){
+myRouter.route('/send_email')
+.post(function(req,res){
 
       console.log("test");
-  
-  
       var dest = req.body.emailUser
       var nameUser = req.body.nameUser
       var TitreEvenement = req.body.TitreEvenement
@@ -262,11 +260,14 @@ myRouter.route('/send_email'.post(function(req,res){
       sgMail.send(data)
       .then(res => {
       console.log('good !!!', res)
+      res.json('good');
+
       })
       .catch(err => {
       console.log('failed', err)
+      res.json(err);
+
       })
-  
 });
 
 
