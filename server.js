@@ -1,20 +1,29 @@
 var express = require('express');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey("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");
+
 var hostname = 'localhost'; 
 var port = 3000; 
 var mongoose = require('mongoose'); 
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
 var urlmongo = "mongodb://ul0msc5xygeklatzuba6:G8IH6ZO7FTdVusqpZekg@bft0fdz443tmcqz-mongodb.services.clever-cloud.com:27017/bft0fdz443tmcqz"; 
 mongoose.connect(urlmongo, options);
+
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'Erreur lors de la connexion')); 
 db.once('open', function (){
     console.log("Connexion à la base OK"); 
 }); 
+
+
 var app = express(); 
 var bodyParser = require("body-parser"); 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
 var eventSchema = mongoose.Schema({
     title: String, 
     description: String, 
@@ -144,6 +153,7 @@ myRouter.route('/reservations')
     }); 
 })
 .post(function(req,res){
+      
       var reservation = new Reservation();
       reservation.eventUid = req.body.eventUid;
       reservation.userUid = req.body.userUid;
@@ -153,7 +163,30 @@ myRouter.route('/reservations')
         if(err){
           res.send(err);
         }
+
         res.json({message : 'Bravo, ton evenement est maintenant stockée en base de données'});
+
+        var dest = req.body.email
+        var msg = req.body.msg
+        console.log(dest)
+        console.log(msg)
+    
+        const data = {
+          to: "ouali.cherikh@gmail.com",
+          from: 'cylia.silouh@gmail.com',
+          subject: 'Hello ',
+          text: 'this is a test',
+          html: '<strong>' + msg + '</strong>',
+        };
+        sgMail.send(data)
+        .then(response => {
+        console.log('good !!!', response)
+        })
+        .catch(err => {
+        console.log('failed', err)
+        })
+
+
       }); 
 }); 
 
