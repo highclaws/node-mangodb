@@ -244,30 +244,28 @@ myRouter.route('/send_email')
 .post(function(req,res){
 
       console.log("test");
-      var dest = req.body.emailUser
+      var dest = req.body.email
       var msg = req.body.msg
-
       console.log(dest)
       console.log(msg)
   
       const data = {
         to: dest,
         from: 'cylia.silouh@gmail.com',
-        subject: "Résérvation pour l'evenement ",
+        subject: 'Hello ',
         text: 'this is a test',
-        html: '<strong>' + msg +'</strong>',
+        html: '<strong>' + msg + '</strong>',
       };
       sgMail.send(data)
-      .then(res => {
-      console.log('good !!!', res)
-      res.json('good');
-
+      .then(response => {
+      console.log('good !!!')
       })
       .catch(err => {
-      console.log('failed', err)
-      res.json(err);
-
+      console.log('failed')
       })
+  
+      res.json({message:"reservation"}); 
+
 });
 
 
