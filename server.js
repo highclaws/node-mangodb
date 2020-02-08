@@ -257,7 +257,7 @@ myRouter.route('/send_email'.post(function(req,res){
         from: 'cylia.silouh@gmail.com',
         subject: "Résérvation pour l'evenement "+TitreEvenement,
         text: 'this is a test',
-        html: '<strong>' + msg + '</strong>',
+        html: '<strong>' + msg + nameUser +'</strong>',
       };
       sgMail.send(data)
       .then(res => {
