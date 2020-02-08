@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
+    "@sendgrid/mail": "^6.5.2",
     "express": "^4.17.1",
     "mangodb": "^1.0.0",
     "mongodb": "^3.3.2",
