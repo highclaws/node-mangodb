@@ -245,18 +245,17 @@ myRouter.route('/send_email')
 
       console.log("test");
       var dest = req.body.emailUser
-      var nameUser = req.body.nameUser
-      var TitreEvenement = req.body.TitreEvenement
-      var DateEvenement = req.body.DateEvenement
+      var msg = req.body.msg
+
       console.log(dest)
       console.log(msg)
   
       const data = {
         to: dest,
         from: 'cylia.silouh@gmail.com',
-        subject: "Résérvation pour l'evenement "+TitreEvenement,
+        subject: "Résérvation pour l'evenement ",
         text: 'this is a test',
-        html: '<strong>' + DateEvenement + nameUser +'</strong>',
+        html: '<strong>' + msg +'</strong>',
       };
       sgMail.send(data)
       .then(res => {
