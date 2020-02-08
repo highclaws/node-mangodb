@@ -1,7 +1,7 @@
 var express = require('express');
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey("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");
+sgMail.setApiKey("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");
 
 var hostname = 'localhost'; 
 var port = 3000; 
